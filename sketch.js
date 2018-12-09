@@ -14,7 +14,7 @@ function preload() {
   dancer4=loadImage("./assets/4.png");
   dancer5=loadImage("./assets/5.png");
   dancer6=loadImage("./assets/6.png");
-  mybackground = loadImage('/assets/Bg1.png');
+  mybackground = loadImage('./assets/Bg1.png');
 }
 
 function setup() {
@@ -29,7 +29,7 @@ function draw() {
   //background image
   push()
   imageMode(CORNER);
-  background(mybackground, 0,0, windowWidth, windowHeight);
+  backgroundImage(mybackground);
   pop()
 
 
@@ -72,6 +72,15 @@ function deviceMoved() {
   if (value > 255) {
     value = 0;
   }
+}
+
+function backgroundImage(mybackground) {
+  push();
+  translate(width/2,height/2);
+  imageMode(CENTER);
+  let scale = Math.max(width/mybackground.width,height/mybackground.height);
+  image(mybackground,0,0,mybackground.width*scale,mybackground.height*scale)
+  pop();
 }
 
 function windowResized() {
